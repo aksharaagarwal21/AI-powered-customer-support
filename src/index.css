@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-surface: #000000;
+  --color-surface-2: #0a0a0a;
+  --color-surface-3: #141414;
+  --color-surface-4: #1f1f1f;
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: #8a8a8a;
+  --color-text-muted: #555555;
+  --color-accent-green: #00e676;
+  --color-accent-red: #ff3d3d;
+  --color-accent-amber: #ffab00;
+  --color-accent-purple: #b388ff;
+  --color-accent-cyan: #18ffff;
+}
+
+/* Base styles */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1f1f1f transparent;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #000000;
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom animations */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px currentColor; }
+  50% { opacity: 0.5; box-shadow: 0 0 2px currentColor; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes typing-dot {
+  0%, 60% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gauge-fill {
+  from { stroke-dashoffset: 283; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.1); }
+  50% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.2); }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+.typing-dot {
+  animation: typing-dot 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Gradient backgrounds — pure black base */
+.gradient-bg {
+  background: linear-gradient(160deg, #000000 0%, #050510 40%, #0a0512 60%, #000000 100%);
+}
+
+/* Glass cards — pure black with subtle borders */
+.glass-card {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-card-hover:hover {
+  background: rgba(18, 18, 18, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+/* Sentiment color utilities */
+.sentiment-critical { color: #ff3d3d; }
+.sentiment-low { color: #ff6d00; }
+.sentiment-medium { color: #ffab00; }
+.sentiment-good { color: #00e676; }
+.sentiment-excellent { color: #18ffff; }
+
+.sentiment-bg-critical { background: rgba(255, 61, 61, 0.1); border-color: rgba(255, 61, 61, 0.2); }
+.sentiment-bg-low { background: rgba(255, 109, 0, 0.1); border-color: rgba(255, 109, 0, 0.2); }
+.sentiment-bg-medium { background: rgba(255, 171, 0, 0.1); border-color: rgba(255, 171, 0, 0.2); }
+.sentiment-bg-good { background: rgba(0, 230, 118, 0.1); border-color: rgba(0, 230, 118, 0.2); }
+.sentiment-bg-excellent { background: rgba(24, 255, 255, 0.1); border-color: rgba(24, 255, 255, 0.2); }
+
+/* Neon accent on focus */
+input:focus, textarea:focus, select:focus {
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15), 0 0 20px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f1f1f;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a2a;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #ffffff;
+}
